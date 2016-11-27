@@ -11,9 +11,9 @@ public class Autentification {
 		this.Base_of_Data = Base_of_Data;
 	}
 	
-	public boolean addToBase(String name, int level){
+	public boolean addToBase(String nick, String email, String password){
 		if (Base_of_Data.isEmpty()){
-			Base_of_Data.put(pin, new User(name,level));
+			Base_of_Data.put(pin, new User(nick,email,password));
 			return true;
 		}
 		int numb = 0;
@@ -22,7 +22,7 @@ public class Autentification {
 				numb++;
 		}
 		if (numb == 0) {
-			Base_of_Data.put(pin, new User(name,level));
+			Base_of_Data.put(pin, new User(nick,email,password));
 			 return true;
 		 }
 		 else

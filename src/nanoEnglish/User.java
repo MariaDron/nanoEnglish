@@ -2,12 +2,15 @@ package nanoEnglish;
 
 public class User {
 	
-	String name;
+	String nick;
+	String password;
+	String email;
 	int level;
 	
-	public User(String name, int level){
-		this.name = name;
-		this.level = level;
+	public User(String nick, String email, String password){
+		this.nick = nick;
+		this.email = email;
+		this.password = password;
 	}
 	
 	public void read_Dictionary(){
