@@ -25,6 +25,7 @@ class RegistrationPanel extends JPanel{
 	JLabel msg;
 	String up = "Зарегистрироваться";
 	String in = "Зайти в аккаунт";
+	static String nickname;
 	
 	public RegistrationPanel(String window){
 		setLayout(null);
@@ -116,6 +117,7 @@ class RegistrationPanel extends JPanel{
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					String nick_text = nick.getText();
+					nickname = nick_text;
 					String email_text = email.getText();
 					String password_text = password.getText();
 					if (nick_text.equals("") | email_text.equals("") | password_text.equals("")){
