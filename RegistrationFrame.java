@@ -41,18 +41,18 @@ class RegistrationPanel extends JPanel{
 			add(nick).setBounds(115, 300, 300, 35);
 			JTextField email = new JTextField(15);
 			add(email).setBounds(115, 350, 300, 35);
-			JTextField password = new JTextField(15);
+			JPasswordField password = new JPasswordField(15);
 			add(password).setBounds(115, 400, 300, 35);
 			
 			JButton sign_up = new JButton(up);
 			sign_up.setForeground(Color.WHITE);
-			sign_up.setBackground(new Color(102, 	0, 	255));
+			sign_up.setBackground(new Color(191,157,153));
 			add(sign_up).setBounds(165, 450, 200, 50);
 			JLabel label = new JLabel("Уже имеете аккаунт?");
 			add(label).setBounds(210,535,200,20);
 			JButton sign_in = new JButton(in);
 			sign_in.setForeground(Color.WHITE);
-			sign_in.setBackground(new Color(102, 	0, 	255));
+			sign_in.setBackground(new Color(191,157,153));
 			add(sign_in).setBounds(165, 565, 200, 50);
 			getInformation(sign_up, nick, email, password, up);
 			sign_in.addActionListener(new ActionListener(){
@@ -72,7 +72,7 @@ class RegistrationPanel extends JPanel{
 		else{
 			JTextField nick = new JTextField(20);
 			add(nick).setBounds(115, 320, 300, 45);
-			JTextField password = new JTextField(15);
+			JPasswordField password = new JPasswordField(15);
 			add(password).setBounds(115, 385, 300, 45);
 			
 			JButton sign_in = new JButton(in);
@@ -105,21 +105,25 @@ class RegistrationPanel extends JPanel{
 	public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(back, 0, 0, 550, 700, this);
-        g.setColor(Color.pink);
+        g.setColor(new Color(255,245,230));
         g.fillRect(60, 60, 410, 575);
         g.setColor(Color.white);
         g.fillOval(130, 10, 270, 270);
         g.drawImage(logo, 160, 20, 210, 210, this);
     }
 	
-	public void getInformation(JButton button, JTextField nick, JTextField email, JTextField password, String doing){
+	public void getInformation(JButton button, JTextField nick, JTextField email, JPasswordField password, String doing){
 		if (doing.equals(up)) {
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
 					String nick_text = nick.getText();
 					nickname = nick_text;
 					String email_text = email.getText();
-					String password_text = password.getText();
+					char[] pass= password.getPassword();
+					String password_text = "";
+					for (int i=0; i<pass.length; i++){
+						password_text = password_text + pass[i];
+					}
 					if (nick_text.equals("") | email_text.equals("") | password_text.equals("")){
 						JLabel msg = new JLabel("Зополните все поля!!!");
 						msg.setForeground(Color.red);

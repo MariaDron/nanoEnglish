@@ -43,7 +43,7 @@ class WelcomePanel extends JPanel{
 		Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );
 		JButton menu_button = new JButton(icon1);
-		menu_button.setBackground(new Color(240,128,128));
+		menu_button.setBackground(new Color(157,111,135));
 		add(menu_button).setBounds(0,0,60,60);
 
 		menu_button.addActionListener(new ActionListener(){
@@ -69,24 +69,19 @@ class WelcomePanel extends JPanel{
 		dictionary.setBackground(new Color(255,239,213));
 		add(dictionary).setBounds(430,590,80,80);
 
-		/*menu_button.addActionListener(new ActionListener(){
+		dictionary.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				try{
-					MenuFrame newframe = new MenuFrame();
-
-					newframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					newframe.setVisible(true);
-
-				} catch (ClassNotFoundException e2) {
-					e2.printStackTrace();
-				}
+				Dictionary frame;
+				frame = new Dictionary();
+				frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+				frame.setVisible(true);
 			}
-		});*/
+		});
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setColor(new Color(240,128,128));
+		g.setColor(new Color(157,111,135));
 		g.fillRect(0, 0, 550, 60);
 		g.setColor(Color.white);
 		g.fillOval(150, 100, 250, 250);

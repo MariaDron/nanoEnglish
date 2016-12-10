@@ -1,6 +1,8 @@
 package nanoEnglish;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.*;
@@ -47,6 +49,31 @@ class MenuPanel extends JPanel{
 		button.setBackground(c);
 		button.setForeground(Color.white);
 		add(button).setBounds(x,y,w,h);
+		
+		if(buttonName.equals("Читать материалы")){
+			button.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					try{
+						ReadingMaterialsFrame newframe = new ReadingMaterialsFrame();
+						newframe.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+						newframe.setVisible(true);
+					} catch (ClassNotFoundException e2) {
+						e2.printStackTrace();
+					}
+				}
+			});
+		}
+		
+		if(buttonName.equals("Мои словари")){
+			button.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					Dictionary frame;
+					frame = new Dictionary();
+					frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					frame.setVisible(true);
+				}
+			});
+		}
 	}
 	
 	public void paintComponent(Graphics g) {

@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -23,6 +25,7 @@ class LevelResultPanel extends JPanel{
 	String text_lev1 = "Вам придется хорошо поработать над собой и своими знаниями";
 	String text_lev2 = "Вам необходимо улучшить уровень знания английского языка";
 	String text_lev3 = "Вы хорошо знаете английский язык, но практика никогда не бывает лишней";
+	String filename;
 	Color Red = (Color.red);
 	Color TransRed = new Color(250, 	218, 	221);
 	Color Yellow = new Color(255, 	255, 	0);
@@ -38,8 +41,11 @@ class LevelResultPanel extends JPanel{
 	BufferedImage back;
 	static JLabel res;
 	static JTextArea textArea;
+	static public ArrayList<Dickt> dictionary;
+	int level;
 
 	public LevelResultPanel(int level){
+		this.level = level;
 		setLayout(null);
 		try {                
 			back = ImageIO.read(new File("background.png"));
@@ -56,7 +62,7 @@ class LevelResultPanel extends JPanel{
 		add(res).setBounds(210, 320, 200, 50);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setBackground(Color.pink);
+		textArea.setBackground(new Color(255,226,223));
 		textArea.setFont(new Font("Dialog", Font.ROMAN_BASELINE, 16));
 		textArea.setLineWrap(true);
 		textArea.setWrapStyleWord(true);
@@ -64,17 +70,16 @@ class LevelResultPanel extends JPanel{
 
 		JButton ok = new JButton("Перейти к обучению");
 		ok.setForeground(Color.black);
-		ok.setBackground(Color.MAGENTA);
+		ok.setBackground(new Color(191,157,153));
 		add(ok).setBounds(165, 560, 200, 50);
 
 		ok.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {			
 				try{
 					WelcomeFrame newframe = new WelcomeFrame();
-
 					newframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					newframe.setVisible(true);
-
+					
 				} catch (ClassNotFoundException e2) {
 					e2.printStackTrace();
 				}
@@ -111,6 +116,22 @@ class LevelResultPanel extends JPanel{
 			color5=Yellow;
 			color6=Green;
 		}
+		
+		if (level==1){
+			filename = "FirstLevelDictionary.txt";
+		}
+		if (level==2){
+			filename = "SecondLevelDictionary.txt";
+		}
+		if (level==1){
+			filename = "ThirdLevelDictionary.txt";
+		}
+		try {
+			ReadDictionary rd = new ReadDictionary(filename);
+			dictionary = rd.reading();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	public void paintComponent(Graphics g) {
@@ -118,7 +139,7 @@ class LevelResultPanel extends JPanel{
 		g.drawImage(back, 0, 0, 550, 700, this);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(1.0f));
-		g.setColor(Color.pink);
+		g.setColor(new Color(255,245,230));
 		g.fillRect(60, 60, 410, 575);
 		g.setColor((color1));
 		g.fillOval(105, 140, 80, 80);
@@ -132,9 +153,9 @@ class LevelResultPanel extends JPanel{
 		g.fillOval(345, 140, 80, 80);
 		g.setColor((color6));
 		g.drawOval(345, 140, 80, 80);
-		g.setColor(Color.black);
+		g.setColor(new Color(163,145,142));
 		g.drawRect(125, 390, 280, 145);
-		g.setColor(Color.pink);
+		g.setColor(new Color(255,226,223));
 		g.fillRect(126, 391, 279, 144);
 	}
 }

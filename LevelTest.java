@@ -24,10 +24,7 @@ public class LevelTest extends JFrame{
 		setSize(550,730);
 		Container contentPane = getContentPane();
 		LevelTestPanel panel = new LevelTestPanel();
-		panel.setBackground(new Color(255,  218,  185));//ïåðñèê
-		//panel.setBackground(new Color(255,  250,  205));//ëèìîí-êðåì
-		//panel.setBackground(new Color(199,  252,  236));//ãîëóáîé
-		//panel.setBackground(new Color(216,  191,  216));//÷åðòîïîëîõ
+		panel.setBackground(new Color(255,235,205));
 		contentPane.add(panel);
 	}
 }
@@ -80,21 +77,21 @@ class LevelTestPanel extends JPanel{
 		JRadioButton Button15 = new JRadioButton("Çíàþ ìíîãî ñëîâ, â òîì ÷èñëå èç ñïåöèàëüíûõ îáëàñòåé è ñëåíã");//
 
 
-		Button1.setBackground(new Color(255,  218,  185));
-		Button2.setBackground(new Color(255,  218,  185));
-		Button3.setBackground(new Color(255,  218,  185));
-		Button4.setBackground(new Color(255,  218,  185));
-		Button5.setBackground(new Color(255,  218,  185));
-		Button6.setBackground(new Color(255,  218,  185));
-		Button7.setBackground(new Color(255,  218,  185));
-		Button8.setBackground(new Color(255,  218,  185));
-		Button9.setBackground(new Color(255,  218,  185));
-		Button10.setBackground(new Color(255,  218,  185));
-		Button11.setBackground(new Color(255,  218,  185));
-		Button12.setBackground(new Color(255,  218,  185));
-		Button13.setBackground(new Color(255,  218,  185));
-		Button14.setBackground(new Color(255,  218,  185));
-		Button15.setBackground(new Color(255,  218,  185));
+		Button1.setBackground(new Color(255,235,205));
+		Button2.setBackground(new Color(255,235,205));
+		Button3.setBackground(new Color(255,235,205));
+		Button4.setBackground(new Color(255,235,205));
+		Button5.setBackground(new Color(255,235,205));
+		Button6.setBackground(new Color(255,235,205));
+		Button7.setBackground(new Color(255,235,205));
+		Button8.setBackground(new Color(255,235,205));
+		Button9.setBackground(new Color(255,235,205));
+		Button10.setBackground(new Color(255,235,205));
+		Button11.setBackground(new Color(255,235,205));
+		Button12.setBackground(new Color(255,235,205));
+		Button13.setBackground(new Color(255,235,205));
+		Button14.setBackground(new Color(255,235,205));
+		Button15.setBackground(new Color(255,235,205));
 
 		Button1.setFocusPainted(false);
 		Button4.setFocusPainted(false);
