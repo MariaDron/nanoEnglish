@@ -49,7 +49,7 @@ class TranslationWordPanel extends JPanel{
 	JLabel WordTitle;
 	JLabel labelTitle;
 	JButton question, answer1,answer2, answer3, answer4; 
-	private long timeStart; 
+	ActionListener [] act1, act2, act3, act4;
 
 	public TranslationWordPanel(ArrayList<Dickt> training, ArrayList<Integer> y, ArrayList<Dickt> dictionary){
 		setBackground(new Color(157,111,111));
@@ -150,6 +150,10 @@ class TranslationWordPanel extends JPanel{
 					labelTitle.setText("Выберите правильный ответ");
 					colorR = false;
 					colorG = false;
+					answer1.addActionListener(act1[0]);
+					answer2.addActionListener(act2[0]);
+					answer3.addActionListener(act3[0]);
+					answer4.addActionListener(act4[0]);
 					repaint();
 				}
 				else{
@@ -195,19 +199,19 @@ class TranslationWordPanel extends JPanel{
 				if (answer.getText() != word.word){
 					colorR = true;
 					colorG = false;
-					for (ActionListener act1: answer1.getActionListeners()) answer2.removeActionListener(act1);
-					for (ActionListener act2: answer2.getActionListeners()) answer2.removeActionListener(act2);
-					for (ActionListener act3: answer3.getActionListeners()) answer3.removeActionListener(act3);
-					for (ActionListener act4: answer4.getActionListeners()) answer4.removeActionListener(act4);
 				}
 				else{
 					colorR = false;
 					colorG = true;
-					for (ActionListener act1: answer1.getActionListeners()) answer2.removeActionListener(act1);
-					for (ActionListener act2: answer2.getActionListeners()) answer2.removeActionListener(act2);
-					for (ActionListener act3: answer3.getActionListeners()) answer3.removeActionListener(act3);
-					for (ActionListener act4: answer4.getActionListeners()) answer4.removeActionListener(act4);
 				}
+				act1 = answer1.getActionListeners();
+				answer1.removeActionListener(act1[0]);
+				act2 = answer2.getActionListeners();
+				answer2.removeActionListener(act2[0]);
+				act3 = answer3.getActionListeners();
+				answer3.removeActionListener(act3[0]);
+				act4 = answer4.getActionListeners();
+				answer4.removeActionListener(act4[0]);
 				repaint();
 			}
 		});
