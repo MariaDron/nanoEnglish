@@ -23,11 +23,11 @@ public class Dictionary extends JFrame{
 		add(panel).setBounds(0, 0, 550, 730);
 	}
 	
-	/*public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) throws ClassNotFoundException {
 				Dictionary frame = new Dictionary();
 				 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
-	}*/
+	}
 }
 
 class CertainDictionary extends JPanel{

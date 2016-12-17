@@ -67,10 +67,23 @@ class MenuPanel extends JPanel{
 		if(buttonName.equals("Мои словари")){
 			button.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					Dictionary frame;
-					frame = new Dictionary();
+					Dictionary frame = new Dictionary();
 					frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 					frame.setVisible(true);
+				}
+			});
+		}
+		
+		if(buttonName.equals("Учить слова")){
+			button.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					try {
+						LearnWordMenu frame = new LearnWordMenu();
+						frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+						frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 		}

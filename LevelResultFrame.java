@@ -25,7 +25,7 @@ class LevelResultPanel extends JPanel{
 	String text_lev1 = "¬ам придетс€ хорошо поработать над собой и своими знани€ми";
 	String text_lev2 = "¬ам необходимо улучшить уровень знани€ английского €зыка";
 	String text_lev3 = "¬ы хорошо знаете английский €зык, но практика никогда не бывает лишней";
-	String filename;
+	static String filename;
 	Color Red = (Color.red);
 	Color TransRed = new Color(250, 	218, 	221);
 	Color Yellow = new Color(255, 	255, 	0);
@@ -41,8 +41,8 @@ class LevelResultPanel extends JPanel{
 	BufferedImage back;
 	static JLabel res;
 	static JTextArea textArea;
-	static public ArrayList<Dickt> dictionary;
-	int level;
+	//static public ArrayList<Dickt> dictionary;
+	static int level;
 
 	public LevelResultPanel(int level){
 		this.level = level;
@@ -126,12 +126,12 @@ class LevelResultPanel extends JPanel{
 		if (level==1){
 			filename = "ThirdLevelDictionary.txt";
 		}
-		try {
+		/*try {
 			ReadDictionary rd = new ReadDictionary(filename);
 			dictionary = rd.reading();
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
-		}
+		}*/
 	}
 
 	public void paintComponent(Graphics g) {
