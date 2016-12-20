@@ -38,8 +38,6 @@ class LevelTestPanel extends JPanel{
 	private BufferedImage listen;
 	private BufferedImage vocabulary;
 	private String s="ÃÎÂÎÐÞ";
-	private String sa="Pictures/speak.jpg";
-	private String pic="Pictures/write.jpg";
 	private String B1 ="Áåãëî è ãðàìîòíî ðàçãîâàðèâàþ \n"
 			+ "íà ëþáûå òåìû";
 	static int low;
@@ -49,11 +47,11 @@ class LevelTestPanel extends JPanel{
 	public LevelTestPanel(){
 		setLayout(null); 
 		try {               
-			speak = ImageIO.read(new File("speak.jpg"));
-			write = ImageIO.read(new File("write.jpg"));
-			read = ImageIO.read(new File("read.jpg"));
-			listen = ImageIO.read(new File("listen.jpg"));
-			vocabulary = ImageIO.read(new File("vocabulary.jpg"));
+			speak = ImageIO.read(new File("Image/speak.jpg"));
+			write = ImageIO.read(new File("Image/write.jpg"));
+			read = ImageIO.read(new File("Image/read.jpg"));
+			listen = ImageIO.read(new File("Image/listen.jpg"));
+			vocabulary = ImageIO.read(new File("Image/vocabulary.jpg"));
 		} catch (IOException ex) {}
 
 		JRadioButton Button1 = new JRadioButton("Íå ìîãó ãîâîðèòü, íî çíàþ íåñêîëüêî ñëîâ ñëîâ è ôðàç");
@@ -404,43 +402,6 @@ class LevelTestPanel extends JPanel{
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
 				}
-				/* if ((low>=middle)&&(low>high)){
-	            	LevelResultFrame.level1=1;
-	            	try{
-	            	       frame2 = new LevelResultFrame();
-
-	            	       frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	            	       frame2.setVisible(true);
-
-	            	       } catch (ClassNotFoundException e1) {
-	            	        e1.printStackTrace();
-	            	       }
-	            }
-	            if ((middle>=low)&&(middle>high)){
-	            	LevelResultFrame.level1=2;
-	            	try{
-	            	       frame2 = new LevelResultFrame();
-
-	            	       frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	            	       frame2.setVisible(true);
-
-	            	       } catch (ClassNotFoundException e1) {
-	            	        e1.printStackTrace();
-	            	       }
-
-	            }
-	            if ((high>=middle)&&(high>low)){
-	            	try{
-	            	       frame2 = new LevelResultFrame(3);
-
-	            	       frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	            	       frame2.setVisible(true);
-
-	            	       } catch (ClassNotFoundException e1) {
-	            	        e1.printStackTrace();
-	            	       }
-
-	            }*/
 				RegistrationPanel.frame1.dispose();
 			}
 		});
@@ -454,7 +415,6 @@ class LevelTestPanel extends JPanel{
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 

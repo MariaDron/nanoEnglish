@@ -7,22 +7,18 @@ public class User {
 	String email;
 	int level;
 	
+	public User(){
+		this.nick = "";
+		this.email = "";
+		this.password = "";
+		this.level = 0;
+	}
+	
 	public User(String nick, String email, String password){
 		this.nick = nick;
 		this.email = email;
 		this.password = password;
-	}
-	
-	public void read_Dictionary(){
-		if (level == 1){
-			ReadDictionary file_reader = new ReadDictionary("LowLevel");
-		}
-		if (level == 2){
-			ReadDictionary file_reader = new ReadDictionary("IntermediateLevel");
-		}
-		if (level == 3){
-			ReadDictionary file_reader = new ReadDictionary("HighLevel");
-		}
+		this.level = 0;
 	}
 }
 

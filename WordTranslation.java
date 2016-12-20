@@ -21,7 +21,7 @@ public class WordTranslation extends JFrame{
 		y.add(610);		
 		ArrayList<Dickt> training = new ArrayList<Dickt>();
 		for (int i = 0; i<8; i++){
-			Dickt word = dictionary.get(random.nextInt(6));//dictionary.size())
+			Dickt word = dictionary.get(random.nextInt(dictionary.size()));
 			training.add(word);
 		}
 
@@ -36,11 +36,12 @@ class WordTranslationdPanel extends JPanel{
 	boolean colorR = false;
 	boolean colorG = false;
 	Dickt word;
+	int count = 0;
 	ArrayList<Dickt> training;
 	Random random;
 	JLabel WordTitle, labelTitle; 
 	JButton question,answer1,answer2,answer3,answer4;
-	ActionListener act1, act2, act3, act4;
+	ActionListener [] act1, act2, act3, act4;
 
 	public WordTranslationdPanel(ArrayList<Dickt> training, ArrayList<Integer> y, ArrayList<Dickt> dictionary){
 		setBackground(new Color(157,111,111));
@@ -48,9 +49,9 @@ class WordTranslationdPanel extends JPanel{
 		this.word = training.remove(0);
 		this.training = training;
 		random = new Random();
+		int c;
 
-
-		ImageIcon icon = new ImageIcon("audio.png");// audio image
+		ImageIcon icon = new ImageIcon("Image/audio.png");
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
@@ -58,7 +59,7 @@ class WordTranslationdPanel extends JPanel{
 		audio.setBackground(Color.WHITE);
 		add(audio).setBounds(385,330,32,32);
 
-		ImageIcon icon1 = new ImageIcon("question.png"); // question image
+		ImageIcon icon1 = new ImageIcon("Image/question.png"); 
 		Image img1 = icon1.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg1 );
@@ -66,7 +67,7 @@ class WordTranslationdPanel extends JPanel{
 		question.setBackground(new Color(157,111,111));
 		add(question).setBounds(450,390,35,42);
 
-		ImageIcon icon2 = new ImageIcon("next.png");
+		ImageIcon icon2 = new ImageIcon("Image/next.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
@@ -89,41 +90,17 @@ class WordTranslationdPanel extends JPanel{
 		add(WordTitle).setBounds(90,150,350,50);
 
 		ArrayList<Dickt> otherWord = random_answers(dictionary);
-		Font font = new Font("Verdana", Font.PLAIN, 20);
-		int c = y.remove(random.nextInt(y.size()));
-		JButton answer1 = new JButton(word.trans1);
-		answer1.setBackground(Color.white);
-		answer1.setFont(font);
-		add(answer1).setBounds(140, c, 250, 40);
-		act1 = make_action_listener(answer1);
-		answer1.addActionListener(act1);
-
+		c = y.remove(random.nextInt(y.size()));
+		answer1 =  make_answer_button(word.trans1, c);
 		c = y.remove(random.nextInt(y.size()));
 		Dickt new_word = otherWord.remove(0);
-		JButton answer2 = new JButton(new_word.trans1);
-		answer2.setBackground(Color.white);
-		answer2.setFont(font);
-		add(answer2).setBounds(140, c, 250, 40);
-		act2 = make_action_listener(answer2);
-		answer2.addActionListener(act2);
-
+		answer2 =  make_answer_button(new_word.trans1, c);
 		c = y.remove(random.nextInt(y.size()));
 		new_word = otherWord.remove(0);
-		JButton answer3 = new JButton(new_word.trans1);
-		answer3.setBackground(Color.white);
-		answer3.setFont(font);
-		add(answer3).setBounds(140, c, 250, 40);
-		act3 = make_action_listener(answer3);
-		answer3.addActionListener(act3);
-
+		answer3 =  make_answer_button(new_word.trans1, c);
 		c = y.remove(random.nextInt(y.size()));
 		new_word = otherWord.remove(0);
-		JButton answer4 = new JButton(new_word.trans1);
-		answer4.setBackground(Color.white);
-		answer4.setFont(font);
-		add(answer4).setBounds(140, c, 250, 40);
-		act4 = make_action_listener(answer4);
-		answer4.addActionListener(act4);
+		answer4 =  make_answer_button(new_word.trans1, c);
 
 		next.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -146,16 +123,21 @@ class WordTranslationdPanel extends JPanel{
 					labelTitle.setText("Выберите правильный ответ");
 					colorR = false;
 					colorG = false;
-					answer1.addActionListener(act1);
-					answer2.addActionListener(act2);
-					answer3.addActionListener(act3);
-					answer4.addActionListener(act4);
+					answer1.addActionListener(act1[0]);
+					answer2.addActionListener(act2[0]);
+					answer3.addActionListener(act3[0]);
+					answer4.addActionListener(act4[0]);
 					repaint();
 				}
 				else{
-					/*LearningWordFrame frame = new LearningWordFrame();
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setVisible(true);*/
+					LearnWordMenu frame;
+					try {
+						frame = new LearnWordMenu(count);
+						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -182,40 +164,40 @@ class WordTranslationdPanel extends JPanel{
 		return arr;
 	}
 
-	public ActionListener make_action_listener (JButton button){
-		ActionListener listener = new ActionListener(){
+	public JButton make_answer_button(String button_name, int y){
+		Font font = new Font("Verdana", Font.PLAIN, 20);
+		JButton answer = new JButton(button_name);
+		answer.setBackground(Color.white);
+		answer.setFont(font);
+		add(answer).setBounds(140, y, 250, 40);
+
+		answer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				question.setVisible(false);
 				Font font = new Font("Verdana", Font.PLAIN, 23);
 				labelTitle.setFont(font);
 				labelTitle.setText(word.trans1);
-				if (button.getText() != word.trans1){
+				if (answer.getText() != word.trans1){
 					colorR = true;
 					colorG = false;
-					/*answer1.removeActionListener(act1);
-					answer2.removeActionListener(act2);
-					answer3.removeActionListener(act3);
-					answer4.removeActionListener(act4);*/
-					for (ActionListener act1: answer1.getActionListeners()) answer1.removeActionListener(act1);
-					for (ActionListener act2: answer2.getActionListeners()) answer2.removeActionListener(act2);
-					for (ActionListener act3: answer3.getActionListeners()) answer3.removeActionListener(act3);
-					for (ActionListener act4: answer4.getActionListeners()) answer4.removeActionListener(act4);
 				}
 				else{
 					colorR = false;
 					colorG = true;
-					/*answer1.removeActionListener(act1);
-					answer2.removeActionListener(act2);
-					answer3.removeActionListener(act3);
-					answer4.removeActionListener(act4);*/
-					for (ActionListener act1: answer1.getActionListeners()) answer1.removeActionListener(act1);
-					for (ActionListener act2: answer2.getActionListeners()) answer2.removeActionListener(act2);
-					for (ActionListener act3: answer3.getActionListeners()) answer3.removeActionListener(act3);
-					for (ActionListener act4: answer4.getActionListeners()) answer4.removeActionListener(act4);
+					count ++;
 				}
+				act1 = answer1.getActionListeners();
+				answer1.removeActionListener(act1[0]);
+				act2 = answer2.getActionListeners();
+				answer2.removeActionListener(act2[0]);
+				act3 = answer3.getActionListeners();
+				answer3.removeActionListener(act3[0]);
+				act4 = answer4.getActionListeners();
+				answer4.removeActionListener(act4[0]);
+				repaint();
 			}
-		};
-		return listener;
+		});
+		return answer;
 	}
 
 	public void paintComponent(Graphics g) {

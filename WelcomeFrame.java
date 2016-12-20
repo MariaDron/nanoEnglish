@@ -26,7 +26,7 @@ class WelcomePanel extends JPanel{
 		setLayout(null);
 		setBackground(new Color(255,239,213));
 		try {                
-			logo = ImageIO.read(new File("logo.png"));
+			logo = ImageIO.read(new File("Image/logo.png"));
 		} catch (IOException ex) {}
 
 		Font font = new Font("TimesRoman", Font.PLAIN, 28);
@@ -38,7 +38,7 @@ class WelcomePanel extends JPanel{
 		title.setFont(font);
 		add(title).setBounds(200, 10, 200, 50);
 
-		ImageIcon icon1 = new ImageIcon("menu-icon.png");
+		ImageIcon icon1 = new ImageIcon("Image/menu-icon.png");
 		Image img = icon1.getImage() ;  
 		Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );
@@ -61,7 +61,7 @@ class WelcomePanel extends JPanel{
 		});
 
 
-		ImageIcon icon = new ImageIcon("dictionary.png");
+		ImageIcon icon = new ImageIcon("Image/dictionary.png");
 		Image img1 = icon.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( 80, 80,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg1 );

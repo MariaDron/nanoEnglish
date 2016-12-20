@@ -23,11 +23,11 @@ public class Dictionary extends JFrame{
 		add(panel).setBounds(0, 0, 550, 730);
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException {
+	/*public static void main(String[] args) throws ClassNotFoundException {
 				Dictionary frame = new Dictionary();
 				 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setVisible(true);
-	}
+	}*/
 }
 
 class CertainDictionary extends JPanel{
@@ -43,7 +43,7 @@ class CertainDictionary extends JPanel{
 		labelTitle.setBackground(new Color(145,157,177));
 		add(labelTitle).setBounds(0,10,550,40);
 		
-		ImageIcon icon = new ImageIcon("prev.png");
+		ImageIcon icon = new ImageIcon("Image/prev.png");
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 60, 55,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
@@ -59,15 +59,53 @@ class CertainDictionary extends JPanel{
 			}
 		});
 		
-		/*LevelResultPanel.dictionary
-		JTextArea textArea = new JTextArea(text); //JTextPane
-		textArea.setFont(new Font("Dialog", Font.ROMAN_BASELINE, 14));
+		
+		
+		//LevelResultPanel.dictionary
+		JTextArea textArea = new JTextArea(); //JTextPane
+		textArea.setFont(new Font("Dialog", Font.BOLD, 14));//ROMAN_BASELINE
 		textArea.setLineWrap(true);
+		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
+		textArea.setBackground(new Color(224,232,245));
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		add(scrollPane).setBounds(20,80,492,593);*/
+		//scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		//scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		//add(scrollPane).setBounds(20,80,492,593);
+		add(scrollPane).setBounds(0,60,533,635);
+		String t = " \n";
+		String s = "";
+		
+				try {
+					File file = new File("FirstLevelDictionary.txt");
+			        FileReader fr;
+			        fr = new FileReader(file);
+	                BufferedReader reader = new BufferedReader(fr);
+	        /*String line = reader.readLine();
+	        t=t+line+"\n";
+	        textArea.setText(t);*/
+	        String line3;
+            int x=0;
+           while (( line3 = reader.readLine()) != null) {
+           // for (int j=0; j<9;j++){
+            //line3 = reader.readLine();
+            	String[] words = line3.split("@");
+            	/*for(int i=0;i<1;i++){
+            		t=t+words[i]+"\n";
+            	}*/
+            	//s=words[0];//+words[1];
+            	t=t+"    "+words[1]+"\n";
+            	t=t+"    "+words[2]+"\n";
+            	t=t+"________________________________________________________________ \n";
+            }
+           textArea.setText(t);
+            line3 = reader.readLine();  
+		} catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
 	}
 
 	public void paintComponent(Graphics g) {
@@ -84,14 +122,14 @@ class ChoseDictionary extends JPanel{
 		setLayout(null);
 		setBackground(new Color(224,232,245));
 		
-		JLabel labelTitle = new JLabel("Мои Словари");
+		JLabel labelTitle = new JLabel("");         ///!!!!!!!!!!!!!!!!!!!
 		labelTitle.setHorizontalAlignment(JLabel.CENTER);
 		labelTitle.setFont(new Font("Verdana", Font.PLAIN, 20));
 		labelTitle.setForeground(Color.BLACK);
 		labelTitle.setBackground(new Color(145,157,177));
 		add(labelTitle).setBounds(0,10,550,40);
 		
-		ImageIcon icon1 = new ImageIcon("menu-icon.png");
+		ImageIcon icon1 = new ImageIcon("Image/menu-icon.png");
 		Image img = icon1.getImage() ;  
 		Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );
@@ -113,9 +151,13 @@ class ChoseDictionary extends JPanel{
 			}
 		});
 		
-		JButton myDictionary = new JButton("Мой словарь");
-		JButton dontKnow = new JButton("Слова на изучение");
-		JButton alreadyKnow = new JButton("Изученые слова");
+		JButton myDictionary = new JButton("Мой словарь");  ///!!!!!!!!!!!!!!!!!!!
+		JButton dontKnow = new JButton("Неизученные слова");///!!!!!!!!!!!!!!!!!!!
+		JButton alreadyKnow = new JButton("Изученные слова");///!!!!!!!!!!!!!!!!!!!
+		
+		/*myDictionary.setFont(new Font("Verdana", Font.BOLD, 10));
+		dontKnow.setFont(new Font("Verdana", Font.BOLD, 10));
+		alreadyKnow.setFont(new Font("Verdana", Font.BOLD, 10));*/
 		
 		myDictionary.setBackground(new Color(99,123,162));
 		myDictionary.setForeground(Color.BLACK);

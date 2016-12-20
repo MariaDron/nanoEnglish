@@ -48,7 +48,7 @@ class LevelResultPanel extends JPanel{
 		this.level = level;
 		setLayout(null);
 		try {                
-			back = ImageIO.read(new File("background.png"));
+			back = ImageIO.read(new File("Image/background.png"));
 		} catch (IOException ex) {}
 		Font font = new Font("TimesRoman", Font.PLAIN, 17);
 		JLabel msg = new JLabel("Ваш уровень знания английского");
@@ -64,7 +64,9 @@ class LevelResultPanel extends JPanel{
 		JTextArea textArea = new JTextArea();
 		textArea.setBackground(new Color(255,226,223));
 		textArea.setFont(new Font("Dialog", Font.ROMAN_BASELINE, 16));
+		textArea.setEditable(false);
 		textArea.setLineWrap(true);
+		//textArea.setHorizontalAlignment(JTextArea.CENTER);
 		textArea.setWrapStyleWord(true);
 		add(textArea).setBounds(150,405,230,115);
 

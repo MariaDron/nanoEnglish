@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Main_Test {
 	static JFrame frame;
 	static User user;
-	static HashMap<String,User> Base_of_Data = new HashMap<String,User>();// каждый раз новый. Сделать вн. файл
+	static HashMap<String,User> Base_of_Data = new HashMap<String,User>();
 	
 	public static void main(String[] args) throws ClassNotFoundException {
 		

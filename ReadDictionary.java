@@ -7,14 +7,6 @@ public class ReadDictionary {
 	
 	String filename;
 	
-	/*public static void main(String[] args) throws ClassNotFoundException {
-		ReadDictionary frame = new ReadDictionary("FirstLevelDictionary.txt");
-		ArrayList<Dickt> arr = frame.reading();
-		for (int i=0; i<arr.size(); i++){
-			System.out.println("Слово: " + arr.get(i).word + " Перевод: " + arr.get(i).trans1);
-		}
-	}*/
-	
 	public ReadDictionary (String filename){
 		this.filename = filename;
 	}
@@ -35,21 +27,19 @@ public class ReadDictionary {
             reader.close();
         } 
 		catch (FileNotFoundException e) {} 
-		catch (IOException e) {}
-		
-		
+		catch (IOException e) {}		
 		return arr;
 	}
 	
 	public Dickt breakLine(String line){
 		Dickt comp = new Dickt();
-		int i =1;
+		int i =0;
 		for (String word : line.split("@")) {
 			if (i==1)
 				comp.word = word;
 			if (i==2)
 				comp.trans1 = word;
-			if (i==3)
+			if (i==2)
 				comp.trans2 = word;
 			if (i==4)
 				comp.trans3 = word;

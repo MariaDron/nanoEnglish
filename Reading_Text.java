@@ -35,7 +35,7 @@ import java.awt.event.ActionListener;
 			scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 			add(scrollPane).setBounds(10,60,515,622);
 			
-			ImageIcon icon = new ImageIcon("prev.png");
+			ImageIcon icon = new ImageIcon("Image/prev.png");
 			Image img = icon.getImage() ;  
 			Image newimg = img.getScaledInstance( 60, 55,  java.awt.Image.SCALE_SMOOTH ) ;  
 			icon = new ImageIcon( newimg );

@@ -15,7 +15,7 @@ public class ConstructorWord extends JFrame{
 		Random random = new Random();
 		ArrayList<Dickt> training = new ArrayList<Dickt>();
 		for (int i = 0; i<8; i++){
-			Dickt word = dictionary.get(random.nextInt(6));//dictionary.size())
+			Dickt word = dictionary.get(random.nextInt(dictionary.size()));//)
 			training.add(word);
 		}
 
@@ -30,6 +30,8 @@ class ConstructorWordPanel extends JPanel{
 	boolean addflag = false;
 	boolean colorG = false;
 	boolean colorR = false;
+	int red = 0;
+	int count = 0;
 	Dickt word;
 	ArrayList<Dickt> training;
 	Random random;
@@ -46,7 +48,7 @@ class ConstructorWordPanel extends JPanel{
 		random = new Random();
 		int c;
 
-		ImageIcon icon = new ImageIcon("audio.png");
+		ImageIcon icon = new ImageIcon("Image/audio.png");
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
@@ -54,7 +56,7 @@ class ConstructorWordPanel extends JPanel{
 		audio.setBackground(Color.WHITE);
 		add(audio).setBounds(385,330,32,32);
 
-		ImageIcon icon1 = new ImageIcon("question.png");
+		ImageIcon icon1 = new ImageIcon("Image/question.png");
 		Image img1 = icon1.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg1 );
@@ -62,7 +64,7 @@ class ConstructorWordPanel extends JPanel{
 		question.setBackground(new Color(157,111,111));
 		add(question).setBounds(450,390,35,42);
 
-		ImageIcon icon2 = new ImageIcon("next.png");
+		ImageIcon icon2 = new ImageIcon("Image/next.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
@@ -103,15 +105,20 @@ class ConstructorWordPanel extends JPanel{
 					ans.setVisible(false);
 					new_word = "";
 					make_char_button(word.word);
-					colorR = false;
+					red = 0;
 					colorG = false;
+					colorR = false;
 					repaint();
 				}
-				/*else{
-					LearningWordFrame frame = new LearningWordFrame();
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setVisible(true);
-				}*/
+				else{
+					try {
+						LearnWordMenu frame = new LearnWordMenu(count);
+						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 	}
@@ -152,7 +159,11 @@ class ConstructorWordPanel extends JPanel{
 				public void actionPerformed(ActionEvent e) {
 					if ((new_word + b.getText()).equals(word)) {
 						question.setVisible(false);
-						colorG=true;
+						if (red>0) colorR=true;
+						else{
+							count ++;
+							colorG = true;
+						}
 						repaint();
 						remove(b);
 					}
@@ -163,6 +174,9 @@ class ConstructorWordPanel extends JPanel{
 						ans.setText(new_word);
 						b.setVisible(false);
 						remove(b);
+					}
+					else{
+						red++;
 					}
 				}
 			});
@@ -181,6 +195,10 @@ class ConstructorWordPanel extends JPanel{
 		}
 		if (colorG == true){
 			g.setColor(Color.GREEN);
+			g.drawRect(88, 68, 353, 303);
+		}
+		if (colorR == true) {
+			g.setColor(Color.RED);
 			g.drawRect(88, 68, 353, 303);
 		}
 		

@@ -20,10 +20,9 @@ public class TranslationWord extends JFrame{
 		y.add(490);
 		y.add(550);
 		y.add(610);		
-		//ArrayList<Dickt> dictionary =  myreader.reading();
 		ArrayList<Dickt> training = new ArrayList<Dickt>();
 		for (int i = 0; i<8; i++){
-			Dickt word = dictionary.get(random.nextInt(6));//dictionary.size())
+			Dickt word = dictionary.get(random.nextInt(dictionary.size()));
 			training.add(word);
 		}
 
@@ -32,18 +31,13 @@ public class TranslationWord extends JFrame{
 		TranslationWordPanel panel = new TranslationWordPanel(training,y,dictionary);
 		contentPane.add(panel);
 	}
-
-	/*public static void main(String[] args) throws ClassNotFoundException {
-		LearningWordFrame frame = new LearningWordFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}*/
 }
 
 class TranslationWordPanel extends JPanel{
 	boolean colorR = false;
 	boolean colorG = false;
 	Dickt word;
+	int count = 0;
 	ArrayList<Dickt> training;
 	Random random;
 	JLabel WordTitle;
@@ -59,12 +53,13 @@ class TranslationWordPanel extends JPanel{
 		random = new Random();
 		int c;
 
-		ImageIcon icon = new ImageIcon("audio.png");// audio image
+		ImageIcon icon = new ImageIcon("Image/audio.png");// audio image
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
 		JButton audio = new JButton(icon);
 		audio.setBackground(Color.WHITE);
+		audio.setFocusPainted(false);
 		add(audio).setBounds(385,330,32,32);
 		/*audio.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -86,20 +81,22 @@ class TranslationWordPanel extends JPanel{
 			}
 		});*/
 
-		ImageIcon icon1 = new ImageIcon("question.png");
+		ImageIcon icon1 = new ImageIcon("Image/question.png");
 		Image img1 = icon1.getImage() ;  
 		Image newimg1 = img1.getScaledInstance( 30, 30,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg1 );
 		question = new JButton(icon1);
 		question.setBackground(new Color(157,111,111));
+		question.setFocusPainted(false);
 		add(question).setBounds(450,390,35,42);
 
-		ImageIcon icon2 = new ImageIcon("next.png");
+		ImageIcon icon2 = new ImageIcon("Image/next.png");
 		Image img2 = icon2.getImage() ;  
 		Image newimg2 = img2.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon2 = new ImageIcon( newimg2 );
 		JButton next = new JButton(icon2);
 		next.setBackground(new Color(157,111,111));
+		next.setFocusPainted(false);
 		add(next).setBounds(430,600,60,60);
 
 		labelTitle = new JLabel("Выберите правильный ответ");
@@ -157,9 +154,14 @@ class TranslationWordPanel extends JPanel{
 					repaint();
 				}
 				else{
-					/*LearningWordFrame frame = new LearningWordFrame();
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setVisible(true);*/
+					LearnWordMenu frame;
+					try {
+						frame = new LearnWordMenu(count);
+						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					}			
 				}
 			}
 		});
@@ -203,6 +205,7 @@ class TranslationWordPanel extends JPanel{
 				else{
 					colorR = false;
 					colorG = true;
+					count++;
 				}
 				act1 = answer1.getActionListeners();
 				answer1.removeActionListener(act1[0]);

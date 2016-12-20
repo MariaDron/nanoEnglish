@@ -63,7 +63,7 @@ class ReadingMaterialsPanel extends JPanel{
         textArea.setWrapStyleWord(true);
 		add(textArea).setBounds(45,y+25,440,150);
         
-		ImageIcon icon = new ImageIcon("next.png");
+		ImageIcon icon = new ImageIcon("Image/next.png");
 		Image img = icon.getImage() ;  
 		Image newimg = img.getScaledInstance( 80, 80,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon = new ImageIcon( newimg );
@@ -83,7 +83,7 @@ class ReadingMaterialsPanel extends JPanel{
 	public String reading (String filename) throws ClassNotFoundException{
 		String text = "";
 		try {
-            FileReader fr = new FileReader(filename+".txt");
+            FileReader fr = new FileReader(filename);
             BufferedReader reader = new BufferedReader(fr);
             String line = reader.readLine();
             while (line != null) {

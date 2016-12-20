@@ -4,8 +4,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class LearnWordMenu extends JFrame{
@@ -13,6 +16,13 @@ public class LearnWordMenu extends JFrame{
 		setSize(550,730);
 		Container contentPane = getContentPane();
 		WordMenuPanel panel = new WordMenuPanel();
+		contentPane.add(panel);
+	}
+	
+	public LearnWordMenu(int count) throws ClassNotFoundException{
+		setSize(550,730);
+		Container contentPane = getContentPane();
+		ResultOfLearning panel = new ResultOfLearning(count);
 		contentPane.add(panel);
 	}
 	
@@ -31,9 +41,6 @@ class WordMenuPanel extends JPanel{
 		
 		ReadDictionary rd = new ReadDictionary("FirstLevelDictionary.txt");
 		ArrayList<Dickt> arr = rd.reading();
-		for (int i=0; i<arr.size(); i++){
-			System.out.println("Слово: " + arr.get(i).word + " Перевод: " + arr.get(i).trans1);
-		}
 		
 		JLabel labelTitle = new JLabel("Тренировка лексики");
 		labelTitle.setHorizontalAlignment(JLabel.CENTER);
@@ -42,12 +49,13 @@ class WordMenuPanel extends JPanel{
 		labelTitle.setBackground(new Color(145,157,177));
 		add(labelTitle).setBounds(0,10,550,40);
 		
-		ImageIcon icon1 = new ImageIcon("menu-icon.png");
+		ImageIcon icon1 = new ImageIcon("Image/menu-icon.png");
 		Image img = icon1.getImage() ;  
 		Image newimg = img.getScaledInstance( 60, 60,  java.awt.Image.SCALE_SMOOTH ) ;  
 		icon1 = new ImageIcon( newimg );
 		JButton menu_button = new JButton(icon1);
 		menu_button.setBackground(new Color(145,157,177));
+		menu_button.setFocusPainted(false);
 		add(menu_button).setBounds(0,0,60,60);
 
 		menu_button.addActionListener(new ActionListener(){
@@ -70,6 +78,7 @@ class WordMenuPanel extends JPanel{
 		
 		translate.setBackground(new Color(99,123,162));
 		translate.setForeground(Color.BLACK);
+		translate.setFocusPainted(false);
 		add(translate).setBounds(175, 260,130,30);
 		translate.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -85,6 +94,7 @@ class WordMenuPanel extends JPanel{
 		
 		constructor.setBackground(new Color(66,82,108));
 		constructor.setForeground(Color.BLACK);
+		constructor.setFocusPainted(false);
 		add(constructor).setBounds(116, 420,145,30);
 		constructor.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -100,6 +110,7 @@ class WordMenuPanel extends JPanel{
 		
 		word.setBackground(new Color(157,182,225));
 		word.setForeground(Color.BLACK);
+		word.setFocusPainted(false);
 		add(word).setBounds(294, 370,135,30);
 		word.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -135,5 +146,47 @@ class WordMenuPanel extends JPanel{
 		g.drawOval(255, 285, 200, 200);
 		g.setColor(new Color(157,182,225));
 		g.fillOval(256, 286, 199, 199);
+	}
+}
+
+class ResultOfLearning extends JPanel{
+	private BufferedImage cong;
+	
+	public ResultOfLearning(int count){
+		setBackground(new Color(224,232,245));
+		setLayout(null);
+		
+		try {                
+			cong = ImageIO.read(new File("Image/congratulations.png"));
+		} catch (IOException ex) {}
+		
+		JLabel labelTitle = new JLabel("Правильных ответов "+count+" из 8");
+		labelTitle.setHorizontalAlignment(JLabel.CENTER);
+		labelTitle.setFont(new Font("Verdana", Font.PLAIN, 20));
+		labelTitle.setForeground(Color.BLACK);
+		labelTitle.setBackground(new Color(145,157,177));
+		add(labelTitle).setBounds(0,400,550,40);
+		
+		JButton returning = new JButton("ОК");
+		returning.setBackground(new Color(99,123,162));
+		returning.setForeground(Color.BLACK);
+		returning.setFocusPainted(false);
+		add(returning).setBounds(245, 480,70,35);
+		returning.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				try {
+					LearnWordMenu frame = new LearnWordMenu();
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setVisible(true);
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				}				
+			}
+		});
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(cong, 20, 80, 490, 280, this);
 	}
 }

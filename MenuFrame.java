@@ -32,10 +32,10 @@ class MenuPanel extends JPanel{
 		title.setForeground(Color.WHITE);
 		add(title).setBounds(200, 10, 200, 50);
 		
-		addButton("reading.png", "Читать материалы", RedOxide, 0,60,320,335);
-		addButton("word.png", "Учить слова", FaluRed, 320,60,230,335);
-		addButton("dictionary.png", "Мои словари", CopperRose, 0,395,200,335);
-		addButton("gramma.png", "Учить грамматику", PetiteOrchid, 200,395,350,335);
+		addButton("Image/reading.png", "Читать материалы", RedOxide, 0,60,320,335);
+		addButton("Image/word.png", "Учить слова", FaluRed, 320,60,230,335);
+		addButton("Image/dictionary.png", "Мои словари", CopperRose, 0,395,200,335);
+		addButton("Image/gramma.png", "Учить грамматику", PetiteOrchid, 200,395,350,335);
 	}
 	
 	public void addButton(String iconName, String buttonName, Color c, int x, int y, int w, int h){
